@@ -75,12 +75,17 @@ const PETS: Array<Pet> = [
 
 export class PetsComponent implements OnInit{
   public pets;
+  public selectedPet: Pet;
 
-  public constructor(){ // serve para injeção de dependencias
+  public constructor(){
     this.pets = ''
   }
 
-  public ngOnInit(){ // tarefas pesadas de inicialização, como requisição http
+  public ngOnInit(){
     this.pets = PETS;
   }  
+
+  public onSelect(pet: Pet): void {
+    this.selectedPet = pet
+  }
 }
