@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component'
 import { PetsComponent } from './pets/pets.component'
 import { PetDetailComponent } from './pets/pet-detail/pet-detail.component'
+import { PetService } from './pets/shared/pet.service'
 
 const ROUTES = RouterModule.forRoot([
   // {
@@ -28,6 +29,10 @@ const ROUTES = RouterModule.forRoot([
   //   path: 'kinds',
   //   component: KindsComponent
   // },
+  {
+    path: 'pets/:id',
+    component: PetDetailComponent
+  },
   {
     path: 'pets',
     component: PetsComponent
@@ -54,7 +59,9 @@ const ROUTES = RouterModule.forRoot([
     RouterModule,
     ROUTES
   ],
-  providers: [],
+  providers: [
+    PetService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

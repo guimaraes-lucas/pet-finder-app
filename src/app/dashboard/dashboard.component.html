@@ -1,1 +1,18 @@
 <h1>Painel de controle</h1>
+
+<table class='table'>
+  <thead>
+    <th>Pets</th>
+    <th>Ações</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pet of pets">
+      <td>{{ pet.name }}</td>
+      <td>
+        <a [routerLink]="['/pets', pet.id]" class="btn btn-info">
+          Detalhes
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

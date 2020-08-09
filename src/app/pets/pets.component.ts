@@ -5,8 +5,7 @@ import { PetService } from './shared/pet.service';
 
 @Component({
   selector: 'pets',
-  templateUrl: './pets.component.html',
-  providers: [ PetService ]
+  templateUrl: './pets.component.html'
 })
 
 export class PetsComponent implements OnInit{

@@ -1,22 +1,16 @@
-<div class="modal fade" id="petDetailModal" tabindex="-1" aria-labelledby="petDetailLabel" aria-hidden="true" *ngIf='pet'>
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="petDetailLabel">Detalhes do Pet: {{ pet.name }}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <input [(ngModel)]="pet.name" class="form-control" type="text">
-        <p>
-          <strong>Nome: </strong> {{ pet.name }}
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+<h1>Detalhes do Pet: {{ pet?.name }}</h1>
+
+<div *ngIf="pet">
+  <div class="form-group row">
+    <label for="name" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-8">
+      <input [(ngModel)]="pet.name" class="form-control" type="text">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-8">
+      <button class="btn btn-light" (click)="goBack()">Voltar</button>
+      <button type="submit" class="btn btn-success">Salvar</button>
     </div>
   </div>
 </div>

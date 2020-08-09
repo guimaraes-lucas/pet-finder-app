@@ -84,4 +84,22 @@ export class PetService{
     return promise;
   }
 
+  public getCityPets(): Promise<Pet[]> {
+    let promise = new Promise<Pet[]>((resolve, reject) => {
+      if (PETS.length > 0) {
+          resolve(PETS.slice(0, 3));
+      } else {
+        let error_msg = 'NÃO HÁ PETS';
+        reject(error_msg);
+      }
+    })
+
+    return promise;
+  }
+
+  public getPet(id: number): Promise<Pet> {
+    return this.getPets()
+      .then(tasks => tasks.find(task => task.id === id));
+  }
+
 }
