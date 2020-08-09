@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 
 import { NavbarComponent } from './navbar/navbar.component'
 import { PetsComponent } from './pets/pets.component'
+import { PetDetailComponent } from './pets/pet-detail/pet-detail.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    PetsComponent
+    PetsComponent,
+    PetDetailComponent
   ],
   imports: [
     BrowserModule,
