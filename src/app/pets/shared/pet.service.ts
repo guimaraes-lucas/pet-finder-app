@@ -71,7 +71,17 @@ const PETS: Array<Pet> = [
 @Injectable()
 
 export class PetService{
-  public getPets(): Array<Pet> {
-    return PETS;
+  public getPets(): Promise<Pet[]> {
+    let promise = new Promise<Pet[]>((resolve, reject) => {
+      if (PETS.length > 0) {
+          resolve(PETS);
+      } else {
+        let error_msg = 'NÃO HÁ PETS';
+        reject(error_msg);
+      }
+    })
+
+    return promise;
   }
+
 }

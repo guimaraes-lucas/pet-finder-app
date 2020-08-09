@@ -16,7 +16,9 @@ export class PetsComponent implements OnInit{
   public constructor(private petService: PetService){  }
 
   public ngOnInit(){
-    this.pets = this.petService.getPets();
+    this.petService.getPets()
+      .then((pets) => this.pets = pets)
+      .catch((error_msg) => alert(error_msg));
   }  
 
   public onSelect(pet: Pet): void {
