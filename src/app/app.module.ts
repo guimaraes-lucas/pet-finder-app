@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component'
 import { PetsComponent } from './pets/pets.component'
 import { PetDetailComponent } from './pets/pet-detail/pet-detail.component'
@@ -16,6 +16,10 @@ const ROUTES = RouterModule.forRoot([
   //   path: 'addresses',
   //   component: AddressesComponent
   // },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
+  },
   // {
   //   path: 'users',
   //   component: UsersComponent
@@ -27,6 +31,11 @@ const ROUTES = RouterModule.forRoot([
   {
     path: 'pets',
     component: PetsComponent
+  },
+  {
+    path: '',
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
   }
 ])
 
