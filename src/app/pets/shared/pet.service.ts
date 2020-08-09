@@ -1,105 +1,38 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Address } from '../../addresses/shared/address.model';
-import { User } from '../../users/shared/user.model';
-import { Kind } from '../../kinds/shared/kind.model';
+import { map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 import { Pet } from './pet.model';
-
-const user: User = {
-  id: 1,
-  name: 'Luke',
-  email: 'luke@gmail.com',
-  password: '123456',
-  address: new Address()
-};
-
-const kind: Kind = new Kind(1, 'Dog');
-
-const PETS: Array<Pet> = [
-  {
-    id: 1,
-    name: 'Bob 1',
-    breed: 'Pinscher', 
-    age: 3, 
-    weight: 2.5, 
-    city: 'Cristópolis',
-    kind: kind, 
-    user: user
-  },
-  {
-    id: 2,
-    name: 'Bob 2',
-    breed: 'Pinscher', 
-    age: 3, 
-    weight: 2.5, 
-    city: 'Cristópolis',
-    kind: kind, 
-    user: user
-  },
-  {
-    id: 3,
-    name: 'Bob 3',
-    breed: 'Pinscher', 
-    age: 3, 
-    weight: 2.5, 
-    city: 'Cristópolis',
-    kind: kind, 
-    user: user
-  },
-  {
-    id: 4,
-    name: 'Bob 4',
-    breed: 'Pinscher', 
-    age: 3, 
-    weight: 2.5, 
-    city: 'Cristópolis',
-    kind: kind, 
-    user: user
-  },
-  {
-    id: 5,
-    name: 'Bob 5',
-    breed: 'Pinscher', 
-    age: 3, 
-    weight: 2.5, 
-    city: 'Cristópolis',
-    kind: kind, 
-    user: user
-  },
-];
 
 @Injectable()
 
 export class PetService{
-  public getPets(): Promise<Pet[]> {
-    let promise = new Promise<Pet[]>((resolve, reject) => {
-      if (PETS.length > 0) {
-          resolve(PETS);
-      } else {
-        let error_msg = 'NÃO HÁ PETS';
-        reject(error_msg);
-      }
-    })
+  public petUrl = 'pets';
 
-    return promise;
+  public constructor(private http: HttpClient){ }
+
+  public getPets(): Observable<Pet[]> {
+    return this.http.get(this.petUrl)
+      .pipe(map((response: HttpResponse<any>) => response.body.json().data as Pet[]))
+      .pipe(catchError(this.handleErrors));
   }
 
-  public getCityPets(): Promise<Pet[]> {
-    let promise = new Promise<Pet[]>((resolve, reject) => {
-      if (PETS.length > 0) {
-          resolve(PETS.slice(0, 3));
-      } else {
-        let error_msg = 'NÃO HÁ PETS';
-        reject(error_msg);
-      }
-    })
-
-    return promise;
+  public getCityPets(): Observable<Pet[]> {
+    return this.getPets().pipe(
+      map(pets => pets.slice(0, 3)));
   }
 
-  public getPet(id: number): Promise<Pet> {
-    return this.getPets()
-      .then(tasks => tasks.find(task => task.id === id));
+  public getPet(id: number): Observable<Pet> {
+    let url = `${this.petUrl}/${id}`;
+    return this.http.get(this.petUrl).pipe(
+      map((response: HttpResponse<any>) => response.body.json().data as Pet));
+  }
+
+  public handleErrors(error: Response){
+    console.log('SALVANDO O ERRO NUM ARQUIVO DE LOG - DETALHES DO ERRO =>', error);
+    return Observable.throw(error);
   }
 
 }

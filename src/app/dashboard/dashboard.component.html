@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let pet of pets">
+    <tr *ngFor='let pet of pets'>
       <td>{{ pet.name }}</td>
       <td>
         <a [routerLink]="['/pets', pet.id]" class="btn btn-info">

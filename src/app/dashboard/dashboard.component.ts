@@ -8,14 +8,15 @@ import { PetService } from '../pets/shared/pet.service'
   templateUrl: './dashboard.component.html'
 })
 
-export class DashboardComponent{
+export class DashboardComponent implements OnInit{
   public pets: Array<Pet>;
 
   public constructor(private petService: PetService){  }
 
   public ngOnInit(){
     this.petService.getPets()
-      .then((pets) => this.pets = pets)
-      .catch((error_msg) => alert(error_msg));
+      .subscribe(
+        pets => this.pets = pets),
+        error => alert("Ocorreu um erro no servidor, tente mais tarde.");
   }  
 }

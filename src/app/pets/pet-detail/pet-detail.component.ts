@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs/operators'
 import { Location } from '@angular/common'
 

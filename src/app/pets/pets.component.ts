@@ -16,8 +16,9 @@ export class PetsComponent implements OnInit{
 
   public ngOnInit(){
     this.petService.getPets()
-      .then((pets) => this.pets = pets)
-      .catch((error_msg) => alert(error_msg));
+      .subscribe(
+        pets => this.pets = pets),
+        error => alert("Ocorreu um erro no servidor, tente mais tarde.");
   }  
 
   public onSelect(pet: Pet): void {
