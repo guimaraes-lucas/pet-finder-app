@@ -9,12 +9,12 @@ import { PetService } from '../pets/shared/pet.service'
 })
 
 export class DashboardComponent{
-  public pets: Pet[];
+  public pets: Array<Pet>;
 
   public constructor(private petService: PetService){  }
 
   public ngOnInit(){
-    this.petService.getCityPets()
+    this.petService.getPets()
       .then((pets) => this.pets = pets)
       .catch((error_msg) => alert(error_msg));
   }  
