@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { map, catchError } from 'rxjs/operators';
@@ -9,25 +9,48 @@ import { Pet } from './pet.model';
 @Injectable()
 
 export class PetService{
-  public petUrl = 'pets';
+  public petUrl = 'http://localhost:3000/pets';
+  public headers = new HttpHeaders({'Content-type': 'application/json'});
 
   public constructor(private http: HttpClient){ }
 
-  public getPets(): Observable<Pet[]> {
-    return this.http.get(this.petUrl)
-      .pipe(map((response: HttpResponse<any>) => response.body.json().data as Pet[]))
+  public getAll(): Observable<Pet[]> {
+    return this.http.get<Pet[]>(this.petUrl)
       .pipe(catchError(this.handleErrors));
   }
 
-  public getCityPets(): Observable<Pet[]> {
-    return this.getPets().pipe(
+  public getPerCity(): Observable<Pet[]> {
+    return this.getAll().pipe(
       map(pets => pets.slice(0, 3)));
   }
 
-  public getPet(id: number): Observable<Pet> {
+  public getById(id: number): Observable<Pet> {
     let url = `${this.petUrl}/${id}`;
-    return this.http.get(this.petUrl).pipe(
-      map((response: HttpResponse<any>) => response.body.json().data as Pet));
+    return this.http.get<Pet>(url);
+  }
+
+  public create(pet: Pet): Observable<Pet> {
+    let url = this.petUrl;
+    let body = JSON.stringify(pet);
+
+    return this.http.post<Pet>(url, body, { headers: this.headers })
+      .pipe(catchError(this.handleErrors));
+  }
+
+  public update(pet: Pet): Observable<Pet> {
+    let url = `${this.petUrl}/${pet.id}`;
+    let body = JSON.stringify(pet);
+
+    return this.http.put<Pet>(url, body, { headers: this.headers })
+      .pipe(catchError(this.handleErrors));
+  }
+
+  public delete(id: number): Observable<null> {
+    let url = `${this.petUrl}/${id}`;
+
+    return this.http.delete(url, { headers: this.headers })
+      .pipe(catchError(this.handleErrors),
+        map(() => null));
   }
 
   public handleErrors(error: Response){

@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit{
   public constructor(private petService: PetService){  }
 
   public ngOnInit(){
-    this.petService.getPets()
+    this.petService.getAll()
       .subscribe(
         pets => this.pets = pets),
         error => alert("Ocorreu um erro no servidor, tente mais tarde.");
