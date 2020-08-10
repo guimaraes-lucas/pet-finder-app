@@ -53,6 +53,13 @@ export class PetService{
         map(() => null));
   }
 
+  public searchByName(term: string): Observable<Pet[]> {
+    let url = `${this.petUrl}/?name=${term}`;
+
+    return this.http.get<Pet[]>(url)
+      .pipe(catchError(this.handleErrors));
+  }
+
   public handleErrors(error: Response){
     console.log('SALVANDO O ERRO NUM ARQUIVO DE LOG - DETALHES DO ERRO =>', error);
     return Observable.throw(error);

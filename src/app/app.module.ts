@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PetSearchComponent } from './navbar/pet-search/pet-search.component';
 import { PetsComponent } from './pets/pets.component';
 import { PetDetailComponent } from './pets/pet-detail/pet-detail.component';
 import { PetService } from './pets/shared/pet.service';
@@ -16,6 +17,7 @@ import { PetService } from './pets/shared/pet.service';
     AppComponent,
     DashboardComponent,
     NavbarComponent,
+    PetSearchComponent,
     PetsComponent,
     PetDetailComponent
   ],
