@@ -1,16 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser'
+import { FormsModule } from '@angular/forms'
+import { NgModule } from '@angular/core'
+import { HttpClientModule } from '@angular/common/http'
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { PetSearchComponent } from './navbar/pet-search/pet-search.component';
-import { PetsComponent } from './pets/pets.component';
-import { PetDetailComponent } from './pets/pet-detail/pet-detail.component';
-import { PetService } from './pets/shared/pet.service';
+// components imports
+import { AppComponent } from './app.component'
+import { DashboardComponent } from './dashboard/dashboard.component'
+import { NavbarComponent } from './navbar/navbar.component'
+import { PetSearchComponent } from './navbar/pet-search/pet-search.component'
+import { PetsComponent } from './pets/pets.component'
+import { PetDetailComponent } from './pets/pet-detail/pet-detail.component'
+
+// services imports
+import { PetService } from './pets/shared/pet.service'
+
+// modules imports
+import { AppRoutingModule } from './app-routing.module'
 
 @NgModule({
   declarations: [

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
 import { Pet } from '../pets/shared/pet.model'
 import { PetService } from '../pets/shared/pet.service'
@@ -9,7 +9,7 @@ import { PetService } from '../pets/shared/pet.service'
 })
 
 export class DashboardComponent implements OnInit{
-  public pets: Array<Pet>;
+  public pets: Array<Pet>
 
   public constructor(private petService: PetService){  }
 
@@ -17,6 +17,6 @@ export class DashboardComponent implements OnInit{
     this.petService.getAll()
       .subscribe(
         pets => this.pets = pets),
-        error => alert("Ocorreu um erro no servidor, tente mais tarde.");
+        error => alert("Ocorreu um erro no servidor, tente mais tarde.")
   }  
 }

@@ -1,10 +1,10 @@
-import { ActivatedRoute, Params } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router'
+import { Component, OnInit } from '@angular/core'
 import { switchMap } from 'rxjs/operators'
 import { Location } from '@angular/common'
 
-import { Pet } from '../shared/pet.model';
-import { PetService } from '../shared/pet.service';
+import { Pet } from '../shared/pet.model'
+import { PetService } from '../shared/pet.service'
 
 @Component({
   selector: 'pet-detail',
@@ -12,7 +12,7 @@ import { PetService } from '../shared/pet.service';
 })
 
 export class PetDetailComponent implements OnInit{
-  public pet: Pet;
+  public pet: Pet
 
   public constructor(
     private petService: PetService,
@@ -26,11 +26,11 @@ export class PetDetailComponent implements OnInit{
       .subscribe(
         pet => this.pet = pet,
         error => alert("Ocorreu um erro no servidor, tente mais tarde.")
-      );
+      )
   }
 
   public goBack(){
-    this.location.back();
+    this.location.back()
   }
 
   public updatePet(){
@@ -41,7 +41,7 @@ export class PetDetailComponent implements OnInit{
       .subscribe(
         () => alert('Pet atualizado com sucesso!'),
         () => alert("Ocorreu um erro no servidor, tente mais tarde.")
-      );
+      )
     }
   }
 }

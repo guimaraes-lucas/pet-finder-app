@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { Routes, RouterModule } from '@angular/router'
 
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component'
 import { PetDetailComponent } from './pets/pet-detail/pet-detail.component'
 import { PetsComponent } from './pets/pets.component'
 
@@ -23,7 +23,7 @@ const ROUTES: Routes = [
   { path: 'pets', component: PetsComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full'
   }
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(ROUTES)],

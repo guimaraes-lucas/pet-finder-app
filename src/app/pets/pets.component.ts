@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { Pet } from './shared/pet.model';
-import { PetService } from './shared/pet.service';
+import { Pet } from './shared/pet.model'
+import { PetService } from './shared/pet.service'
 
 @Component({
   selector: 'pets',
@@ -9,34 +9,34 @@ import { PetService } from './shared/pet.service';
 })
 
 export class PetsComponent implements OnInit{
-  public pets: Array<Pet>;
-  public newPet: Pet;
+  public pets: Array<Pet>
+  public newPet: Pet
 
   public constructor(private petService: PetService){ 
-    this.newPet = new Pet();
+    this.newPet = new Pet()
    }
 
   public ngOnInit(){
     this.petService.getAll()
       .subscribe(
         pets => this.pets = pets),
-        error => alert("Ocorreu um erro no servidor, tente mais tarde.");
+        error => alert("Ocorreu um erro no servidor, tente mais tarde.")
   }  
 
   public createPet() {
-    this.newPet.name = this.newPet.name.trim();
+    this.newPet.name = this.newPet.name.trim()
 
     if(!this.newPet.name){
-      alert("O pet deve ter um nome");
+      alert("O pet deve ter um nome")
     }else{
       this.petService.create(this.newPet)
       .subscribe(
         (pet) => {
-          this.pets.push(pet);
-          this.newPet = new Pet();
+          this.pets.push(pet)
+          this.newPet = new Pet()
         },
         () => alert("Ocorreu um erro no servidor, tente mais tarde.")
-      );
+      )
     }
   }
 
@@ -46,7 +46,7 @@ export class PetsComponent implements OnInit{
       .subscribe(
         () => this.pets = this.pets.filter(p => p !== pet),
         () => alert("Ocorreu um erro no servidor, tente mais tarde.")
-      );
+      )
     }
   }
 }
