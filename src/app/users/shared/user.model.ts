@@ -1,9 +1,7 @@
-import { Address } from 'src/app/addresses/shared/address.model';
-
 export class User {
   public id: number;
   public name: string;
   public email: string;
   public password: string;
-  public address: Address;
+  public address: string;
 }

@@ -9,7 +9,7 @@ import { Pet } from './pet.model';
 @Injectable()
 
 export class PetService{
-  public petUrl = 'http://localhost:3000/pets';
+  public petUrl = 'http://localhost:3000/api/pets';
   public headers = new HttpHeaders({'Content-type': 'application/json'});
 
   public constructor(private http: HttpClient){ }
