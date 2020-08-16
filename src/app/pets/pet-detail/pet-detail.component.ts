@@ -2,9 +2,9 @@ import { ActivatedRoute, Params } from '@angular/router'
 import { Component, OnInit } from '@angular/core'
 import { switchMap } from 'rxjs/operators'
 import { Location } from '@angular/common'
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'
+import { FormGroup, FormBuilder } from '@angular/forms'
 
-import { Pet } from '../shared/pet.model'
+import { Pet, petValidations } from '../shared/pet.model'
 import { Kind } from 'src/app/kinds/shared/kind.model'
 
 import { PetService } from '../shared/pet.service'
@@ -27,15 +27,7 @@ export class PetDetailComponent implements OnInit{
     private location: Location,
     private formBuilder: FormBuilder
   ){
-    this.reactivePetForm = this.formBuilder.group({
-      name: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(60)]],
-      race: [null, [Validators.required]],
-      age: [null, Validators.required],
-      weight: [null, [Validators.required]],
-      city: [null, [Validators.required]],
-      kindId: [null, Validators.required],
-      userId: [null, Validators.required]
-    })
+    this.reactivePetForm = this.formBuilder.group(petValidations)
   }
 
   public ngOnInit(){
@@ -80,7 +72,7 @@ export class PetDetailComponent implements OnInit{
   // form errors methods
   public fieldClassForErrorOrSuccess(fieldName: string){
     return {
-      "has-error": this.showFieldError(fieldName),
+      "needs-validation": this.showFieldError(fieldName),
       "was-validated": this.getField(fieldName).valid
     }
   }

@@ -15,11 +15,11 @@
 
     <div class="form-group col-md-6" [ngClass]="fieldClassForErrorOrSuccess('name')">
       <label for="name" class="col-form-label">Nome</label>
-      <input formControlName="name" id="name" class="form-control" placeholder="Digite o nome do novo Pet">
+      <input formControlName="name" id="name" class="form-control" placeholder="Digite o nome do novo Pet" maxlength="50">
       <div *ngIf="showFieldError('name')" class="text-danger">
         <div *ngIf="getField('name').errors.required">O nome é obrigatório</div>
         <div *ngIf="getField('name').errors.minlength">O nome deve ter no mínimo 2 caracteres</div>
-        <div *ngIf="getField('name').errors.maxlength">O nome deve ter no máximo 60 caracteres</div>
+        <div *ngIf="getField('name').errors.maxlength">O nome deve ter no máximo 50 caracteres</div>
       </div>
     </div>
 
@@ -36,19 +36,23 @@
   <div class="row">
     <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('race')">
       <label for="race" class="col-form-label">Raça</label>
-      <input formControlName="race" id="race" class="form-control" placeholder="Digite raça do novo Pet">
+      <input formControlName="race" id="race" class="form-control" placeholder="Digite raça do novo Pet"  maxlength="50">
 
       <div *ngIf="showFieldError('race')" class="text-danger">
         <div *ngIf="getField('race').errors.required">A raça é obrigatória</div>
+        <div *ngIf="getField('name').errors.minlength">A raça deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="getField('name').errors.maxlength">A raça deve ter no máximo 50 caracteres</div>
       </div>
     </div>
 
     <div class="form-group col-md-6" [ngClass]="fieldClassForErrorOrSuccess('city')">
       <label for="city" class="col-form-label">Cidade</label>
-      <input formControlName="city" id="city" class="form-control" placeholder="Digite a cidade do novo Pet">
+      <input formControlName="city" id="city" class="form-control" placeholder="Digite a cidade do novo Pet"  maxlength="60">
 
       <div *ngIf="showFieldError('city')" class="text-danger">
         <div *ngIf="getField('city').errors.required">A cidade é obrigatória</div>
+        <div *ngIf="getField('name').errors.minlength">A cidade deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="getField('name').errors.maxlength">A cidade deve ter no máximo 60 caracteres</div>
       </div>
     </div>
 
