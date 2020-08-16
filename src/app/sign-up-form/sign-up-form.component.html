@@ -2,37 +2,61 @@
 
 <div class="jumbotron">
   <form style="text-align: right;" [formGroup]="form" (ngSubmit)="signUpUser()">
-    <div class="form-group row">
+    <div class="form-group row" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
       <label for="name" class="col-sm-4 col-form-label">Nome</label>
       <div class="col-sm-4">
         <input type="name" class="form-control" id="name" formControlName="name" placeholder="Informe o seu nome">
+
+        <div *ngIf="formUtils.showFieldError('name')" class="text-danger" style="text-align: left;">
+          <div *ngIf="form.get('name').errors.required">O nome é obrigatório</div>
+          <div *ngIf="form.get('name').errors.minlength">O nome deve ter no mínimo 2 caracteres</div>
+          <div *ngIf="form.get('name').errors.maxlength">O nome deve ter no máximo 100 caracteres</div>
+        </div>
       </div>
     </div>
   
-    <div class="form-group row">
+    <div class="form-group row" [ngClass]="formUtils.fieldClassForErrorOrSuccess('email')">
       <label for="email" class="col-sm-4 col-form-label">Email</label>
       <div class="col-sm-4">
         <input type="email" class="form-control" id="email" formControlName="email" placeholder="Informe o seu email">
+
+        <div *ngIf="formUtils.showFieldError('email')" class="text-danger" style="text-align: left;">
+          <div *ngIf="form.get('email').errors.required">O email é obrigatório</div>
+          <div *ngIf="form.get('email').errors.email">O email informado é inválido</div>
+          <div *ngIf="form.get('email').errors.maxlength">O email deve ter no mínimo 2 caracteres</div>
+          <div *ngIf="form.get('email').errors.maxlength">O email deve ter no máximo 100 caracteres</div>
+        </div>
       </div>
     </div>
   
-    <div class="form-group row">
+    <div class="form-group row" [ngClass]="formUtils.fieldClassForErrorOrSuccess('password')">
       <label for="password" class="col-sm-4 col-form-label">Senha</label>
       <div class="col-sm-4">
         <input type="password" class="form-control" id="password" formControlName="password" placeholder="Informe a sua senha">
+
+        <div *ngIf="formUtils.showFieldError('password')" class="text-danger" style="text-align: left;">
+          <div *ngIf="form.get('password').errors.required">O senha é obrigatório</div>
+          <div *ngIf="form.get('password').errors.minlength">O senha deve ter no mínimo 8 caracteres</div>
+          <div *ngIf="form.get('password').errors.maxlength">O senha deve ter no máximo 60 caracteres</div>
+        </div>
       </div>
     </div>
   
-    <div class="form-group row">
+    <div class="form-group row" [ngClass]="formUtils.fieldClassForErrorOrSuccess('passwordConfirmation')">
       <label for="passwordConfirmation" class="col-sm-4 col-form-label">Confirmação de senha</label>
       <div class="col-sm-4">
         <input type="password" class="form-control" id="passwordConfirmation" formControlName="passwordConfirmation" placeholder="Informe a sua senha novamente">
+
+        <div *ngIf="formUtils.showFieldError('passwordConfirmation')" class="text-danger" style="text-align: left;">
+          <div *ngIf="form.get('passwordConfirmation').errors.required">O confirmação de senha é obrigatório</div>
+          <div *ngIf="form.get('passwordConfirmation').errors.mismatch">O confirmação de senha deve ser igual a senha</div>
+        </div>
       </div>
     </div>
   
     <div class="form-group row">
       <div class="col-sm-4 col-sm-8">
-        <button type="submit" class="btn btn-primary">Criar Conta</button>
+        <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Criar Conta</button>
       </div>
     </div>
   </form>  
