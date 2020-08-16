@@ -1,6 +1,3 @@
-import { User } from 'src/app/users/shared/user.model'
-import { Kind } from 'src/app/kinds/shared/kind.model'
-
 export class Pet {
   constructor(
     public id: number = 0,
@@ -11,5 +8,5 @@ export class Pet {
     public city: string = '',
     public kindId: number = 1,
     public userId: number = 0
-  ){ }
+  ){}
 }

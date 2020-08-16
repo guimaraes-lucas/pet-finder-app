@@ -1,58 +1,67 @@
 <h1 class="page-header">Detalhes do Pet: {{ pet?.name }}</h1>
 
-<form #petForm="ngForm" *ngIf="pet">
+<form [formGroup]="reactivePetForm" (ngSubmit)="updatePet()">
   <div class="row">
-    <div class="form-group col-md-3">
-      <label for="name" class="col-form-label">Tipo</label>
-      <div class="col-sm-8">
-        <select [(ngModel)]="pet.kindId" class="form-control" type="text" name="kindId" id="kindId" required>
-          <option *ngFor="let kind of kindOptions" [value]="kind.id">{{ kind.description }}</option>
-        </select>
+    <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('kindId')">
+      <label for="name" class="control-label">Tipo</label>
+      <select type="text" formControlName="kindId" id="kindId" class="form-control">
+        <option *ngFor="let kind of kindOptions" [value]="kind.id">{{ kind.description }}</option>
+      </select>
+
+      <div *ngIf="showFieldError('kindId')" class="text-danger">
+        <div *ngIf="getField('kindId').errors.required">O tipo é obrigatório</div>
       </div>
     </div>
 
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6" [ngClass]="fieldClassForErrorOrSuccess('name')">
       <label for="name" class="col-form-label">Nome</label>
-      <div class="col-sm-8">
-        <input [(ngModel)]="pet.name" class="form-control" type="text" name="name" id="name" required>
+      <input formControlName="name" id="name" class="form-control">
+      <div *ngIf="showFieldError('name')" class="text-danger">
+        <div *ngIf="getField('name').errors.required">O nome é obrigatório</div>
+        <div *ngIf="getField('name').errors.minlength">O nome deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="getField('name').errors.maxlength">O nome deve ter no máximo 60 caracteres</div>
       </div>
     </div>
 
-    <div class="form-group col-md-3">
-      <label for="name" class="col-form-label">Idade</label>
-      <div class="col-sm-8">
-        <input [(ngModel)]="pet.age" class="form-control" type="text" name="age" id="age" required>
+    <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('age')">
+      <label for="age" class="col-form-label">Idade</label>
+      <input formControlName="age" id="age" class="form-control">
+
+      <div *ngIf="showFieldError('age')" class="text-danger">
+        <div *ngIf="getField('age').errors.required">A idade é obrigatória</div>
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="form-group col-md-3">
-      <label for="name" class="col-form-label">Raça</label>
-      <div class="col-sm-8">
-        <input [(ngModel)]="pet.race" class="form-control" type="text" name="race" id="race" required>
+    <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('race')">
+      <label for="race" class="col-form-label">Raça</label>
+      <input formControlName="race" id="race" class="form-control">
+
+      <div *ngIf="showFieldError('race')" class="text-danger">
+        <div *ngIf="getField('race').errors.required">A raça é obrigatória</div>
       </div>
     </div>
 
-    <div class="form-group col-md-6">
-      <label for="name" class="col-form-label">Cidade</label>
-      <div class="col-sm-8">
-        <input [(ngModel)]="pet.city" class="form-control" type="text" name="city" id="city" required>
+    <div class="form-group col-md-6" [ngClass]="fieldClassForErrorOrSuccess('city')">
+      <label for="city" class="col-form-label">Cidade</label>
+      <input formControlName="city" id="city" class="form-control">
+
+      <div *ngIf="showFieldError('city')" class="text-danger">
+        <div *ngIf="getField('city').errors.required">A cidade é obrigatória</div>
       </div>
     </div>
 
-    <div class="form-group col-md-3">
-      <label for="name" class="col-form-label">Peso</label>
-      <div class="col-sm-8">
-        <input [(ngModel)]="pet.weight" class="form-control" type="text" name="weight" id="weight" required>
+    <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('weight')">
+      <label for="weight" class="col-form-label">Peso</label>
+      <input formControlName="weight" id="weight" class="form-control">
+
+      <div *ngIf="showFieldError('weight')" class="text-danger">
+        <div *ngIf="getField('weight').errors.required">O peso é obrigatório</div>
       </div>
     </div>
-  </div>  
+  </div>
 
-  <button class="btn btn-light" (click)="goBack()">Voltar</button>
-  <button type="submit" class="btn btn-success" (click)="updatePet()">Atualizar</button>
-
-  <hr>
-
-  <pre>{{ pet | json }}</pre>
+  <button [disabled]="reactivePetForm.invalid" type="submit" class="btn btn-success">Atualizar</button>
+  <button class="btn btn-light" type="button" (click)="goBack()">Voltar</button>
 </form>
