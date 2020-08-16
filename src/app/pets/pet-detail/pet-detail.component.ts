@@ -70,15 +70,11 @@ export class PetDetailComponent implements OnInit{
     this.pet.kindId = this.reactivePetForm.get('kindId').value
     this.pet.userId = this.reactivePetForm.get('userId').value
 
-    if(!this.pet.name){
-      alert("O pet deve ter um nome")
-    }else{
-      this.petService.update(this.pet)
-      .subscribe(
-        () => alert('Pet atualizado com sucesso!'),
-        () => alert("Ocorreu um erro no servidor, tente mais tarde.")
-      )
-    }
+    this.petService.update(this.pet)
+    .subscribe(
+      () => alert('Pet atualizado com sucesso!'),
+      () => alert("Ocorreu um erro no servidor, tente mais tarde.")
+    )
   }
 
   // form errors methods

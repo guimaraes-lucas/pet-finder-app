@@ -4,12 +4,16 @@
   <thead>
     <tr>
       <th>Pets</th>
+      <th>Raça</th>
+      <th>Cidade</th>
       <th>Ações</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor='let pet of pets'>
       <td>{{ pet.name }}</td>
+      <td>{{ pet.race }}</td>
+      <td>{{ pet.city }}</td>
       <td>
         <a [routerLink]="['/pets', pet.id]" class="btn btn-info">
           Detalhes

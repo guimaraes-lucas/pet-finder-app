@@ -1,23 +1,79 @@
 <h1 class="page-header">Lista de Pets</h1>
 
-<div class="well">
+<form [formGroup]="reactivePetForm" (ngSubmit)="createPet()">
   <div class="row">
-    <div class="col-md-10">
-      <input type="text" class="form-control" [(ngModel)]="newPet.name" placeholder="Digite o nome do novo Pet">
+    <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('kindId')">
+      <label for="name" class="control-label">Tipo</label>
+      <select type="text" formControlName="kindId" id="kindId" class="form-control">
+        <option *ngFor="let kind of kindOptions" [value]="kind.id">{{ kind.description }}</option>
+      </select>
+
+      <div *ngIf="showFieldError('kindId')" class="text-danger">
+        <div *ngIf="getField('kindId').errors.required">O tipo é obrigatório</div>
+      </div>
     </div>
-    <div class="col-md-2">
-      <button class="btn btn-success" (click)="createPet()">
-        Adicionar Pet
-      </button>
+
+    <div class="form-group col-md-6" [ngClass]="fieldClassForErrorOrSuccess('name')">
+      <label for="name" class="col-form-label">Nome</label>
+      <input formControlName="name" id="name" class="form-control" placeholder="Digite o nome do novo Pet">
+      <div *ngIf="showFieldError('name')" class="text-danger">
+        <div *ngIf="getField('name').errors.required">O nome é obrigatório</div>
+        <div *ngIf="getField('name').errors.minlength">O nome deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="getField('name').errors.maxlength">O nome deve ter no máximo 60 caracteres</div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('age')">
+      <label for="age" class="col-form-label">Idade</label>
+      <input formControlName="age" id="age" class="form-control" placeholder="Digite a idade do novo Pet">
+
+      <div *ngIf="showFieldError('age')" class="text-danger">
+        <div *ngIf="getField('age').errors.required">A idade é obrigatória</div>
+      </div>
     </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('race')">
+      <label for="race" class="col-form-label">Raça</label>
+      <input formControlName="race" id="race" class="form-control" placeholder="Digite raça do novo Pet">
+
+      <div *ngIf="showFieldError('race')" class="text-danger">
+        <div *ngIf="getField('race').errors.required">A raça é obrigatória</div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6" [ngClass]="fieldClassForErrorOrSuccess('city')">
+      <label for="city" class="col-form-label">Cidade</label>
+      <input formControlName="city" id="city" class="form-control" placeholder="Digite a cidade do novo Pet">
+
+      <div *ngIf="showFieldError('city')" class="text-danger">
+        <div *ngIf="getField('city').errors.required">A cidade é obrigatória</div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('weight')">
+      <label for="weight" class="col-form-label">Peso</label>
+      <input formControlName="weight" id="weight" class="form-control" placeholder="Digite o peso do novo Pet">
+
+      <div *ngIf="showFieldError('weight')" class="text-danger">
+        <div *ngIf="getField('weight').errors.required">O peso é obrigatório</div>
+      </div>
+    </div>
+  </div>
+
+  <button [disabled]="reactivePetForm.invalid" type="submit" class="btn btn-success">Adicionar Pet</button>
+</form>
+
+<p></p>
 
 <table class='table'>
   <thead>
     <tr>
       <th>ID</th>
       <th>Nome</th>
+      <th>Raça</th>
+      <th>Cidade</th>
       <th>Ações</th>
     </tr>
   </thead>
@@ -25,6 +81,8 @@
     <tr *ngFor='let pet of pets'>
       <td>{{ pet.id }}</td>
       <td>{{ pet.name }}</td>
+      <td>{{ pet.race }}</td>
+      <td>{{ pet.city }}</td>
       <td>
         <a [routerLink]="['/pets', pet.id]" class="btn btn-info">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
