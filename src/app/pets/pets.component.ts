@@ -8,6 +8,7 @@ import { PetService } from './shared/pet.service'
 import { KindService } from 'src/app/kinds/shared/kind.service'
 
 import { PET_VALIDATION } from './shared/pet.validation'
+import { FormUtils } from 'src/app/shared/form.utils'
 
 @Component({
   selector: 'pets',
@@ -15,10 +16,11 @@ import { PET_VALIDATION } from './shared/pet.validation'
 })
 
 export class PetsComponent implements OnInit{
-  public reactivePetForm: FormGroup
+  public form: FormGroup
   public kindOptions: Kind[]
   public pets: Array<Pet>
   public newPet: Pet
+  public formUtils: FormUtils
 
   public constructor(
     private petService: PetService,
@@ -26,8 +28,9 @@ export class PetsComponent implements OnInit{
     private formBuilder: FormBuilder
   ){ 
     this.newPet = new Pet()
-    this.reactivePetForm = this.formBuilder.group(PET_VALIDATION)
+    this.form = this.formBuilder.group(PET_VALIDATION)
     this.setPet(this.newPet)
+    this.formUtils = new FormUtils(this.form)
    }
 
   public ngOnInit(){
@@ -43,17 +46,17 @@ export class PetsComponent implements OnInit{
   }  
 
   public setPet(pet: Pet): void {
-    this.reactivePetForm.patchValue(pet)
+    this.form.patchValue(pet)
   }
 
   public createPet() {
-    this.newPet.name = this.reactivePetForm.get('name').value
-    this.newPet.race = this.reactivePetForm.get('race').value
-    this.newPet.age = this.reactivePetForm.get('age').value
-    this.newPet.weight = this.reactivePetForm.get('weight').value
-    this.newPet.city = this.reactivePetForm.get('city').value
-    this.newPet.kindId = this.reactivePetForm.get('kindId').value
-    this.newPet.userId = this.reactivePetForm.get('userId').value || 1
+    this.newPet.name = this.form.get('name').value
+    this.newPet.race = this.form.get('race').value
+    this.newPet.age = this.form.get('age').value
+    this.newPet.weight = this.form.get('weight').value
+    this.newPet.city = this.form.get('city').value
+    this.newPet.kindId = this.form.get('kindId').value
+    this.newPet.userId = this.form.get('userId').value || 1
 
     this.petService.create(this.newPet)
     .subscribe(
@@ -73,22 +76,5 @@ export class PetsComponent implements OnInit{
         () => alert("Ocorreu um erro no servidor, tente mais tarde.")
       )
     }
-  }
-
-  // form errors methods
-  public fieldClassForErrorOrSuccess(fieldName: string){
-    return {
-      "needs-validation": this.showFieldError(fieldName),
-      "was-validated": this.getField(fieldName).valid
-    }
-  }
-
-  public showFieldError(fieldName: string): boolean {
-    let field = this.getField(fieldName)
-    return field.invalid && ( field.touched || field.dirty )
-  }
-
-  public getField(fieldName: string){
-    return this.reactivePetForm.get(fieldName)
   }
 }

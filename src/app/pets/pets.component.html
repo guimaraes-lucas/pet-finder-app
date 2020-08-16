@@ -1,72 +1,72 @@
 <h1 class="page-header">Lista de Pets</h1>
 
-<form [formGroup]="reactivePetForm" (ngSubmit)="createPet()">
+<form [formGroup]="form" (ngSubmit)="createPet()">
   <div class="row">
-    <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('kindId')">
+    <div class="form-group col-md-3" [ngClass]="formUtils.fieldClassForErrorOrSuccess('kindId')">
       <label for="name" class="control-label">Tipo</label>
       <select type="text" formControlName="kindId" id="kindId" class="form-control">
         <option *ngFor="let kind of kindOptions" [value]="kind.id">{{ kind.description }}</option>
       </select>
 
-      <div *ngIf="showFieldError('kindId')" class="text-danger">
-        <div *ngIf="getField('kindId').errors.required">O tipo é obrigatório</div>
+      <div *ngIf="formUtils.showFieldError('kindId')" class="text-danger">
+        <div *ngIf="form.get('kindId').errors.required">O tipo é obrigatório</div>
       </div>
     </div>
 
-    <div class="form-group col-md-6" [ngClass]="fieldClassForErrorOrSuccess('name')">
+    <div class="form-group col-md-6" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
       <label for="name" class="col-form-label">Nome</label>
       <input formControlName="name" id="name" class="form-control" placeholder="Informe o nome do novo Pet" maxlength="50">
-      <div *ngIf="showFieldError('name')" class="text-danger">
-        <div *ngIf="getField('name').errors.required">O nome é obrigatório</div>
-        <div *ngIf="getField('name').errors.minlength">O nome deve ter no mínimo 2 caracteres</div>
-        <div *ngIf="getField('name').errors.maxlength">O nome deve ter no máximo 50 caracteres</div>
+      <div *ngIf="formUtils.showFieldError('name')" class="text-danger">
+        <div *ngIf="form.get('name').errors.required">O nome é obrigatório</div>
+        <div *ngIf="form.get('name').errors.minlength">O nome deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="form.get('name').errors.maxlength">O nome deve ter no máximo 50 caracteres</div>
       </div>
     </div>
 
-    <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('age')">
+    <div class="form-group col-md-3" [ngClass]="formUtils.fieldClassForErrorOrSuccess('age')">
       <label for="age" class="col-form-label">Idade</label>
       <input formControlName="age" id="age" class="form-control" placeholder="Informe a idade do novo Pet">
 
-      <div *ngIf="showFieldError('age')" class="text-danger">
-        <div *ngIf="getField('age').errors.required">A idade é obrigatória</div>
+      <div *ngIf="formUtils.showFieldError('age')" class="text-danger">
+        <div *ngIf="form.get('age').errors.required">A idade é obrigatória</div>
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('race')">
+    <div class="form-group col-md-3" [ngClass]="formUtils.fieldClassForErrorOrSuccess('race')">
       <label for="race" class="col-form-label">Raça</label>
       <input formControlName="race" id="race" class="form-control" placeholder="Informe raça do novo Pet"  maxlength="50">
 
-      <div *ngIf="showFieldError('race')" class="text-danger">
-        <div *ngIf="getField('race').errors.required">A raça é obrigatória</div>
-        <div *ngIf="getField('name').errors.minlength">A raça deve ter no mínimo 2 caracteres</div>
-        <div *ngIf="getField('name').errors.maxlength">A raça deve ter no máximo 50 caracteres</div>
+      <div *ngIf="formUtils.showFieldError('race')" class="text-danger">
+        <div *ngIf="form.get('race').errors.required">A raça é obrigatória</div>
+        <div *ngIf="form.get('name').errors.minlength">A raça deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="form.get('name').errors.maxlength">A raça deve ter no máximo 50 caracteres</div>
       </div>
     </div>
 
-    <div class="form-group col-md-6" [ngClass]="fieldClassForErrorOrSuccess('city')">
+    <div class="form-group col-md-6" [ngClass]="formUtils.fieldClassForErrorOrSuccess('city')">
       <label for="city" class="col-form-label">Cidade</label>
       <input formControlName="city" id="city" class="form-control" placeholder="Informe a cidade do novo Pet"  maxlength="60">
 
-      <div *ngIf="showFieldError('city')" class="text-danger">
-        <div *ngIf="getField('city').errors.required">A cidade é obrigatória</div>
-        <div *ngIf="getField('name').errors.minlength">A cidade deve ter no mínimo 2 caracteres</div>
-        <div *ngIf="getField('name').errors.maxlength">A cidade deve ter no máximo 60 caracteres</div>
+      <div *ngIf="formUtils.showFieldError('city')" class="text-danger">
+        <div *ngIf="form.get('city').errors.required">A cidade é obrigatória</div>
+        <div *ngIf="form.get('name').errors.minlength">A cidade deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="form.get('name').errors.maxlength">A cidade deve ter no máximo 60 caracteres</div>
       </div>
     </div>
 
-    <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('weight')">
+    <div class="form-group col-md-3" [ngClass]="formUtils.fieldClassForErrorOrSuccess('weight')">
       <label for="weight" class="col-form-label">Peso</label>
       <input formControlName="weight" id="weight" class="form-control" placeholder="Informe o peso do novo Pet">
 
-      <div *ngIf="showFieldError('weight')" class="text-danger">
-        <div *ngIf="getField('weight').errors.required">O peso é obrigatório</div>
+      <div *ngIf="formUtils.showFieldError('weight')" class="text-danger">
+        <div *ngIf="form.get('weight').errors.required">O peso é obrigatório</div>
       </div>
     </div>
   </div>
 
-  <button [disabled]="reactivePetForm.invalid" type="submit" class="btn btn-success">Adicionar Pet</button>
+  <button [disabled]="form.invalid" type="submit" class="btn btn-success">Adicionar Pet</button>
 </form>
 
 <p></p>
