@@ -4,11 +4,13 @@ import { switchMap } from 'rxjs/operators'
 import { Location } from '@angular/common'
 import { FormGroup, FormBuilder } from '@angular/forms'
 
-import { Pet, petValidations } from '../shared/pet.model'
+import { Pet } from '../shared/pet.model'
 import { Kind } from 'src/app/kinds/shared/kind.model'
 
 import { PetService } from '../shared/pet.service'
 import { KindService } from 'src/app/kinds/shared/kind.service'
+
+import { PET_VALIDATION } from '../shared/pet.validation'
 
 @Component({
   selector: 'pet-detail',
@@ -27,7 +29,7 @@ export class PetDetailComponent implements OnInit{
     private location: Location,
     private formBuilder: FormBuilder
   ){
-    this.reactivePetForm = this.formBuilder.group(petValidations)
+    this.reactivePetForm = this.formBuilder.group(PET_VALIDATION)
   }
 
   public ngOnInit(){

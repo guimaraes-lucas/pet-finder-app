@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component'
 import { PetSearchComponent } from './navbar/pet-search/pet-search.component'
 import { PetsComponent } from './pets/pets.component'
 import { PetDetailComponent } from './pets/pet-detail/pet-detail.component'
+import { SignUpFormComponent } from './sign-up-form/sign-up-form.component'
 
 // services imports
 import { PetService } from './pets/shared/pet.service'
@@ -25,7 +26,8 @@ import { AppRoutingModule } from './app-routing.module'
     NavbarComponent,
     PetSearchComponent,
     PetsComponent,
-    PetDetailComponent
+    PetDetailComponent,
+    SignUpFormComponent
   ],
   imports: [
     AppRoutingModule,

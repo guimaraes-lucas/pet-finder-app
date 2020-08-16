@@ -4,17 +4,14 @@ import { Routes, RouterModule } from '@angular/router'
 import { DashboardComponent } from './dashboard/dashboard.component'
 import { PetDetailComponent } from './pets/pet-detail/pet-detail.component'
 import { PetsComponent } from './pets/pets.component'
+import { SignUpFormComponent } from './sign-up-form/sign-up-form.component'
 
 const ROUTES: Routes = [
-  // {
-  //   path: 'addresses',
-  //   component: AddressesComponent
-  // },
   { path: 'dashboard', component: DashboardComponent },
-  // {
-  //   path: 'users',
-  //   component: UsersComponent
-  // },
+  {
+    path: 'sign-up',
+    component: SignUpFormComponent
+  },
   // {
   //   path: 'kinds',
   //   component: KindsComponent

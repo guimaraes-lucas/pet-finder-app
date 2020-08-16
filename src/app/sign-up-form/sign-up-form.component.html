@@ -1,0 +1,39 @@
+<h1 class="page-header">Faça o seu cadastro</h1>
+
+<div class="jumbotron">
+  <form style="text-align: right;" [formGroup]="userForm" (ngSubmit)="signUpUser()">
+    <div class="form-group row">
+      <label for="name" class="col-sm-4 col-form-label">Nome</label>
+      <div class="col-sm-4">
+        <input type="name" class="form-control" id="name" formControlName="name" placeholder="Informe o seu nome">
+      </div>
+    </div>
+  
+    <div class="form-group row">
+      <label for="email" class="col-sm-4 col-form-label">Email</label>
+      <div class="col-sm-4">
+        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Informe o seu email">
+      </div>
+    </div>
+  
+    <div class="form-group row">
+      <label for="password" class="col-sm-4 col-form-label">Senha</label>
+      <div class="col-sm-4">
+        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Informe a sua senha">
+      </div>
+    </div>
+  
+    <div class="form-group row">
+      <label for="passwordConfirmation" class="col-sm-4 col-form-label">Confirmação de senha</label>
+      <div class="col-sm-4">
+        <input type="password" class="form-control" id="passwordConfirmation" formControlName="passwordConfirmation" placeholder="Informe a sua senha novamente">
+      </div>
+    </div>
+  
+    <div class="form-group row">
+      <div class="col-sm-4 col-sm-8">
+        <button type="submit" class="btn btn-primary">Criar Conta</button>
+      </div>
+    </div>
+  </form>  
+</div>

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 
-import { Pet, petValidations } from './shared/pet.model'
+import { Pet } from './shared/pet.model'
 import { Kind } from 'src/app/kinds/shared/kind.model'
 
 import { PetService } from './shared/pet.service'
 import { KindService } from 'src/app/kinds/shared/kind.service'
+
+import { PET_VALIDATION } from './shared/pet.validation'
 
 @Component({
   selector: 'pets',
@@ -24,7 +26,7 @@ export class PetsComponent implements OnInit{
     private formBuilder: FormBuilder
   ){ 
     this.newPet = new Pet()
-    this.reactivePetForm = this.formBuilder.group(petValidations)
+    this.reactivePetForm = this.formBuilder.group(PET_VALIDATION)
     this.setPet(this.newPet)
    }
 

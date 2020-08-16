@@ -15,7 +15,7 @@
 
     <div class="form-group col-md-6" [ngClass]="fieldClassForErrorOrSuccess('name')">
       <label for="name" class="col-form-label">Nome</label>
-      <input formControlName="name" id="name" class="form-control" placeholder="Digite o nome do novo Pet" maxlength="50">
+      <input formControlName="name" id="name" class="form-control" placeholder="Informe o nome do novo Pet" maxlength="50">
       <div *ngIf="showFieldError('name')" class="text-danger">
         <div *ngIf="getField('name').errors.required">O nome é obrigatório</div>
         <div *ngIf="getField('name').errors.minlength">O nome deve ter no mínimo 2 caracteres</div>
@@ -25,7 +25,7 @@
 
     <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('age')">
       <label for="age" class="col-form-label">Idade</label>
-      <input formControlName="age" id="age" class="form-control" placeholder="Digite a idade do novo Pet">
+      <input formControlName="age" id="age" class="form-control" placeholder="Informe a idade do novo Pet">
 
       <div *ngIf="showFieldError('age')" class="text-danger">
         <div *ngIf="getField('age').errors.required">A idade é obrigatória</div>
@@ -36,7 +36,7 @@
   <div class="row">
     <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('race')">
       <label for="race" class="col-form-label">Raça</label>
-      <input formControlName="race" id="race" class="form-control" placeholder="Digite raça do novo Pet"  maxlength="50">
+      <input formControlName="race" id="race" class="form-control" placeholder="Informe raça do novo Pet"  maxlength="50">
 
       <div *ngIf="showFieldError('race')" class="text-danger">
         <div *ngIf="getField('race').errors.required">A raça é obrigatória</div>
@@ -47,7 +47,7 @@
 
     <div class="form-group col-md-6" [ngClass]="fieldClassForErrorOrSuccess('city')">
       <label for="city" class="col-form-label">Cidade</label>
-      <input formControlName="city" id="city" class="form-control" placeholder="Digite a cidade do novo Pet"  maxlength="60">
+      <input formControlName="city" id="city" class="form-control" placeholder="Informe a cidade do novo Pet"  maxlength="60">
 
       <div *ngIf="showFieldError('city')" class="text-danger">
         <div *ngIf="getField('city').errors.required">A cidade é obrigatória</div>
@@ -58,7 +58,7 @@
 
     <div class="form-group col-md-3" [ngClass]="fieldClassForErrorOrSuccess('weight')">
       <label for="weight" class="col-form-label">Peso</label>
-      <input formControlName="weight" id="weight" class="form-control" placeholder="Digite o peso do novo Pet">
+      <input formControlName="weight" id="weight" class="form-control" placeholder="Informe o peso do novo Pet">
 
       <div *ngIf="showFieldError('weight')" class="text-danger">
         <div *ngIf="getField('weight').errors.required">O peso é obrigatório</div>
