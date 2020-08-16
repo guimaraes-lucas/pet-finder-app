@@ -13,6 +13,7 @@ import { PetDetailComponent } from './pets/pet-detail/pet-detail.component'
 
 // services imports
 import { PetService } from './pets/shared/pet.service'
+import { KindService } from './kinds/shared/kind.service'
 
 // modules imports
 import { AppRoutingModule } from './app-routing.module'
@@ -33,7 +34,8 @@ import { AppRoutingModule } from './app-routing.module'
     HttpClientModule
   ],
   providers: [
-    PetService
+    PetService,
+    KindService
   ],
   bootstrap: [AppComponent]
 })
