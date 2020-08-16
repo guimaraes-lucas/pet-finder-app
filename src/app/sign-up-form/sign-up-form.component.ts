@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms'
+import { FormGroup, FormBuilder } from '@angular/forms'
 
 import { SIGN_UP_VALIDATION } from '../users/shared/user.validation'
 import { FormUtils } from 'src/app/shared/form.utils'

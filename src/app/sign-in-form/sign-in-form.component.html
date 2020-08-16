@@ -1,0 +1,39 @@
+<h1 class="page-header">Faça o seu login</h1>
+
+<div class="jumbotron">
+  <form style="text-align: right;" [formGroup]="form" (ngSubmit)="signInUser()">
+  
+    <div class="form-group row" [ngClass]="formUtils.fieldClassForErrorOrSuccess('email')">
+      <label for="email" class="col-sm-4 col-form-label">Email</label>
+      <div class="col-sm-4">
+        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Informe o seu email">
+
+        <div *ngIf="formUtils.showFieldError('email')" class="text-danger" style="text-align: left;">
+          <div *ngIf="form.get('email').errors.required">O email é obrigatório</div>
+          <div *ngIf="form.get('email').errors.email">O email informado é inválido</div>
+          <div *ngIf="form.get('email').errors.maxlength">O email deve ter no mínimo 2 caracteres</div>
+          <div *ngIf="form.get('email').errors.maxlength">O email deve ter no máximo 100 caracteres</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-group row" [ngClass]="formUtils.fieldClassForErrorOrSuccess('password')">
+      <label for="password" class="col-sm-4 col-form-label">Senha</label>
+      <div class="col-sm-4">
+        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Informe a sua senha">
+
+        <div *ngIf="formUtils.showFieldError('password')" class="text-danger" style="text-align: left;">
+          <div *ngIf="form.get('password').errors.required">O senha é obrigatório</div>
+          <div *ngIf="form.get('password').errors.minlength">O senha deve ter no mínimo 8 caracteres</div>
+          <div *ngIf="form.get('password').errors.maxlength">O senha deve ter no máximo 60 caracteres</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-group row">
+      <div class="col-sm-4 col-sm-8">
+        <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Fazer login</button>
+      </div>
+    </div>
+  </form>  
+</div>
