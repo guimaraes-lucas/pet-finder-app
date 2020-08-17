@@ -56,7 +56,7 @@ export class PetsComponent implements OnInit{
     this.newPet.weight = this.form.get('weight').value
     this.newPet.city = this.form.get('city').value
     this.newPet.kindId = this.form.get('kindId').value
-    this.newPet.userId = this.form.get('userId').value || 1
+    this.newPet.userId = this.form.get('userId').value
 
     this.petService.create(this.newPet)
     .subscribe(

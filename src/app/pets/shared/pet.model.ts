@@ -6,7 +6,7 @@ export class Pet {
     public age: number = 0,
     public weight: number = 0,
     public city: string = '',
-    public kindId: number = 1,
-    public userId: number = 0
+    public kindId: number = null,
+    public userId: number = null
   ){}
 }

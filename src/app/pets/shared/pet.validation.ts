@@ -16,5 +16,5 @@ export const PET_VALIDATION = {
                 Validators.maxLength(60)]
         ],
   kindId: [null, Validators.required],
-  userId: [null, Validators.required]
+  userId: [null]
 }
