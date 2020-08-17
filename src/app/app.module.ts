@@ -1,3 +1,4 @@
+// angular imports
 import { BrowserModule } from '@angular/platform-browser'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NgModule } from '@angular/core'
@@ -14,8 +15,13 @@ import { SignInFormComponent } from './sign-in-form/sign-in-form.component'
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component'
 
 // services imports
-import { PetService } from './pets/shared/pet.service'
+import { AuthService } from './shared/auth.service'
 import { KindService } from './kinds/shared/kind.service'
+import { PetService } from './pets/shared/pet.service'
+
+// guards imports
+import { AuthGuard } from './guards/auth.guard'
+import { NotAuthenticatedGuard } from './guards/not-autheticated.guard'
 
 // modules imports
 import { AppRoutingModule } from './app-routing.module'
@@ -39,8 +45,11 @@ import { AppRoutingModule } from './app-routing.module'
     ReactiveFormsModule
   ],
   providers: [
-    PetService,
-    KindService
+    AuthGuard,
+    AuthService,
+    KindService,
+    NotAuthenticatedGuard,
+    PetService
   ],
   bootstrap: [AppComponent]
 })
